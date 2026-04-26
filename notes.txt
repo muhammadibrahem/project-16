@@ -1,0 +1,221 @@
+# 🎬 MOVIE APP - NOTES
+
+---
+
+1. PROJECT KA PURPOSE
+
+---
+
+Ye app movies show karta hai:
+
+* Popular movies (default)
+* Search movies by name
+* Rating show karta hai (color ke sath)
+* Overview hover par show hota hai
+
+---
+
+2. API USE
+
+---
+
+API Source:
+TMDB (The Movie Database)
+
+Popular Movies:
+https://api.themoviedb.org/3/discover/movie
+
+Search Movies:
+https://api.themoviedb.org/3/search/movie
+
+---
+
+3. IMPORTANT CONSTANTS
+
+---
+
+const APIURL → popular movies
+const IMGPATH → image ka base URL
+const SEARCHAPI → search ke liye URL
+
+---
+
+4. DOM SELECTION
+
+---
+
+const main = document.getElementById("main");
+const form = document.getElementById("form");
+const search = document.getElementById("search");
+
+---
+
+5. INITIAL LOAD
+
+---
+
+getMovies(APIURL);
+
+→ page load hote hi popular movies show hoti hain
+
+---
+
+6. getMovies FUNCTION
+
+---
+
+async function getMovies(url)
+
+Steps:
+
+1. fetch API call
+2. JSON convert
+3. movies list send to showMovies()
+
+---
+
+7. FETCH API
+
+---
+
+const resp = await fetch(url);
+const respData = await resp.json();
+
+→ server se data lana aur JSON me convert karna
+
+---
+
+8. showMovies FUNCTION
+
+---
+
+Ye function movies ko screen par show karta hai
+
+Steps:
+
+1. main clear karo:
+   main.innerHTML = ""
+
+2. loop through movies:
+   movies.forEach()
+
+3. har movie ke liye card create karo
+
+---
+
+9. OBJECT DESTRUCTURING
+
+---
+
+const { poster_path, title, vote_average, overview } = movie;
+
+→ object se direct values nikalna
+
+---
+
+10. MOVIE CARD
+
+---
+
+* image
+* title
+* rating
+* overview
+
+poster image:
+IMGPATH + poster_path
+
+---
+
+11. RATING COLOR SYSTEM
+
+---
+
+function getClassByRate(vote)
+
+vote >= 8 → green
+vote >= 5 → orange
+else → red
+
+→ rating ke hisaab se color change hota hai
+
+---
+
+12. SEARCH FUNCTION
+
+---
+
+form.addEventListener("submit", ...)
+
+Steps:
+
+1. page reload stop
+2. input value lo
+3. SEARCHAPI + searchTerm call karo
+
+---
+
+13. CSS LOGIC
+
+---
+
+* movie cards grid me show hoti hain
+* hover par overview show hota hai
+* rating colors (green/orange/red)
+
+---
+
+14. OVERVIEW EFFECT
+
+---
+
+transform: translateY(101%)
+
+→ hidden
+
+hover par:
+translateY(0)
+
+→ show
+
+---
+
+15. IMPORTANT CONCEPTS
+
+---
+
+✔ API Integration
+✔ async/await
+✔ DOM manipulation
+✔ Dynamic HTML
+✔ Array loop (forEach)
+✔ Object destructuring
+✔ Conditional styling
+
+---
+
+16. FLOW
+
+---
+
+1. Page load → popular movies
+2. User search kare
+3. API call hoti hai
+4. Data milta hai
+5. UI update hota hai
+
+---
+
+17. IMPROVEMENTS
+
+---
+
+* Loading spinner
+* Error handling
+* Pagination
+* Movie details page
+* Trailer (YouTube API)
+
+---
+
+## END OF NOTES
